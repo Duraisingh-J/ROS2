@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<robot name="simple_arm">
+
+  <!-- Base Link -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.2 0.2 0.2" />
+      </geometry>
+      <material name="gray"/>
+    </visual>
+  </link>
+
+  <!-- Link 1 -->
+  <link name="link1">
+    <visual>
+      <geometry>
+        <cylinder length="0.8" radius="0.05"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+
+  <!-- Joint 1 -->
+  <joint name="joint1" type="revolute">
+    <parent link="base_link"/>
+    <child link="link1"/>
+    <origin xyz="0 0 0.2" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="2" velocity="2"/>
+  </joint>
+
+  <!-- Link 2 -->
+  <link name="link2">
+    <visual>
+      <geometry>
+        <cylinder length="0.6" radius="0.05"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+
+  <!-- Joint 2 -->
+  <joint name="joint2" type="revolute">
+    <parent link="link1"/>
+    <child link="link2"/>
+    <origin xyz="0 0 0.8" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="2" velocity="2"/>
+  </joint>
+
+  <!-- Hand Link -->
+  <link name="hand">
+    <visual>
+      <geometry>
+        <box size="0.2 0.1 0.05"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+  </link>
+
+  <!-- Joint connecting Link2 to Hand -->
+  <joint name="joint_hand" type="fixed">
+    <parent link="link2"/>
+    <child link="hand"/>
+    <origin xyz="0 0 0.6" rpy="0 0 0"/>
+  </joint>
+
+</robot>
